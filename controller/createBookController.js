@@ -67,5 +67,16 @@ async function deleteBookById(req,res){
     }
 }
 
+async function updateBookById (req,res){
+    try {
 
-module.exports = {createBook,getAllBooks,getAllBookByName,deleteBookById}
+        const result = await BookService.updateBookById(req.params.id)
+        res.status(200)
+        .json({
+            result 
+        })
+    } catch (err) {
+        throw err 
+    }
+}
+module.exports = {createBook,getAllBooks,getAllBookByName,deleteBookById,updateBookById}

@@ -94,5 +94,27 @@ async function deleteBookById(bookId){
 
 }
 
-module.exports = {createBook,getAllBooks,getAllBookByName,deleteBookById};
+async function updateBookById(bookId){
+    try {
+        const response = new Promise((resolve, reject) => {
+            const myQuery = "UPDATE Books SET column1 = ?, WHERE bookId = ?";
+            db.query(myQuery,[bookId],(err,data)=>{
+                if(err)
+                {
+                    reject(err)
+                }
+                else{
+                    resolve(data)
+                }
+
+            })
+        })
+        return response ;
+    } catch (err) {
+        throw err ;
+    }
+
+}
+
+module.exports = {createBook,getAllBooks,getAllBookByName,deleteBookById,updateBookById};
 
